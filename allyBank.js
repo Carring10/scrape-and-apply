@@ -1,7 +1,7 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
 
-async function performScraping() {
+async function allyBankScraping() {
     const axiosResponse = await axios.request({
         method: "GET",
         url: "https://ally.avature.net/careers/SearchJobs/software%20engineer?667=%5B265477%5D&667_format=613&listFilterMode=1&jobRecordsPerPage=6&",
@@ -11,27 +11,22 @@ async function performScraping() {
     });
 
     const $ = cheerio.load(axiosResponse.data);
-    const filteredRoles = [];
+    const allyBank = [];
 
     $(".article.article--result").each((_, element) => {
         const name = $(element).find("a").first().text().trim();
         const pageUrl = $(element).find("a").attr("href");
 
-        console.log("Role: ", name, "Listing:", pageUrl);
-
         if (name && pageUrl) {
-
-            const allyBank = {
+             const filteredRoles = {
                 name: name,
                 url: pageUrl
             }
 
-            filteredRoles.push(allyBank);
+            allyBank.push(filteredRoles);
         }
     });
-    console.log(filteredRoles);
+    console.log(allyBank);
 }
 
-const juniorRoles = [];
-
-performScraping();
+allyBankScraping();
