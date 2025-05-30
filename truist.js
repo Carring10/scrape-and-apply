@@ -18,9 +18,10 @@ const truistScraping = async () => {
     );
 
     truist.push(jobLinks);
-    console.log(truist);
+    console.log("Truist:", truist);
 
     await browser.close();
 };
 
-truistScraping();
+module.exports = { truistScraping }
+

@@ -26,7 +26,8 @@ async function allyBankScraping() {
             allyBank.push(filteredRoles);
         }
     });
-    console.log(allyBank);
+
+    console.log("Ally Bank", allyBank);
 }
 
-allyBankScraping();
+module.exports = { allyBankScraping }

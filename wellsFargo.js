@@ -25,8 +25,10 @@ async function wellsFargoScraping() {
 
             wellsFargo.push(filteredRoles);
         }
+
     });
-    console.log(wellsFargo);
+    
+    console.log("Wells Fargo:", wellsFargo)
 }
 
-wellsFargoScraping();
+module.exports = { wellsFargoScraping }
