@@ -20,7 +20,7 @@ async function wellsFargoScraping() {
         if (name && pageUrl) {
              const filteredRoles = {
                 name: name,
-                url: pageUrl
+                url: "https://www.wellsfargojobs.com" + pageUrl
             }
 
             wellsFargo.push(filteredRoles);
