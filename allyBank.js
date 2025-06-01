@@ -17,17 +17,34 @@ async function allyBankScraping() {
         const name = $(element).find("a").first().text().trim();
         const pageUrl = $(element).find("a").attr("href");
 
-        if (name && pageUrl) {
-             const filteredRoles = {
-                name: name,
-                url: pageUrl
+        const info = $(element).find("span").text().trim();
+        // map through the string & remove any whitespaces, then filter & keep only items that are not empty (aka truthy)
+        const removeLines = info.split('\n').map(line => line.trim()).filter(line => line);
+        const [city, state, country, refLine, postedLine] = removeLines;
+
+        const location = `${city}, ${state}`;
+        const date = `${postedLine}`;
+
+
+        if (name && pageUrl && info) {
+            if (location === "Charlotte, NC") {
+                const filteredRoles = {
+                    name: name,
+                    url: pageUrl,
+                    info: {
+                        location: location,
+                        date: date
+                    }
+                };
+                allyBank.push(filteredRoles);
             }
 
-            allyBank.push(filteredRoles);
-        }
+        };
     });
 
     console.log("Ally Bank", allyBank);
 }
+
+allyBankScraping();
 
 module.exports = { allyBankScraping }
