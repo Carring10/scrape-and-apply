@@ -1,6 +1,6 @@
 const connection = require("../config/connection");
 
-class Roles {
+class Role {
     constructor(name, url, info) {
         this.name = name;
         this.url = url;
@@ -12,6 +12,25 @@ class Roles {
 
         return connection.execute(sql);
     }
+
+    add() {
+        let sql = `
+    INSERT INTO roles(
+      name,
+      url,
+      info
+    )
+    VALUES(
+      '${this.name}',
+      '${this.url}',
+      '${this.info}'
+    )
+    `;
+
+        const newRole = connection.execute(sql);
+
+        return newRole;
+    }
 }
 
-module.exports = Roles;
+module.exports = Role;
