@@ -1,6 +1,6 @@
-const wellsFargo = require("./wellsFargo");
-const allyBank = require("./allyBank");
-const truist = require("./truist");
+const wellsFargo = require("./scrapers/wellsFargo");
+const allyBank = require("./scrapers/allyBank");
+const truist = require("./scrapers/truist");
 
 wellsFargo.wellsFargoScraping();
 allyBank.allyBankScraping();

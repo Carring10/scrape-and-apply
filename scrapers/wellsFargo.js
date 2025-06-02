@@ -17,18 +17,27 @@ async function wellsFargoScraping() {
         const name = $(element).find("a").first().text().trim();
         const pageUrl = $(element).find("a").attr("href");
 
+        const info = $(element).find(".list-inline-item").text();
+        // map through the string & remove any whitespaces, then filter & keep only items that are not empty (aka truthy)
+        const removeLines = info.split('\n').map(line => line.trim()).filter(line => line);
+        const [location, division] = removeLines;
+
         if (name && pageUrl) {
-             const filteredRoles = {
+            const filteredRoles = {
                 name: name,
-                url: "https://www.wellsfargojobs.com" + pageUrl
+                url: "https://www.wellsfargojobs.com" + pageUrl,
+                info: {
+                    location: location,
+                    date: null
+                }
             }
 
             wellsFargo.push(filteredRoles);
         }
 
     });
-    
+
     console.log("Wells Fargo:", wellsFargo)
 }
-
+wellsFargoScraping();
 module.exports = { wellsFargoScraping }
