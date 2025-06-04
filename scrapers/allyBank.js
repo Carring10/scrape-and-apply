@@ -38,13 +38,15 @@ async function allyBankScraping() {
                 };
                 allyBank.push(filteredRoles);
             }
-
         };
     });
 
     console.log("Ally Bank", allyBank);
+    try {
+        await axios.post("http://localhost:3001/roles", allyBank)
+    } catch (err) {
+        console.log(err);
+    }
 }
-
-allyBankScraping();
 
 module.exports = { allyBankScraping }

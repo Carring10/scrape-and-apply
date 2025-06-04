@@ -1,4 +1,5 @@
 const express = require("express");
+const allyBank = require("./scrapers/allyBank");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -15,3 +16,5 @@ app.use("/roles", require("./server/routes/roleRoutes"));
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+allyBank.allyBankScraping();
