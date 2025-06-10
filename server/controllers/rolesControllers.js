@@ -15,10 +15,9 @@ exports.addNewRole = async (req, res) => {
     const roles = req.body;
 
     for (const role of roles) {
-      const { name, url, info } = role;
-      console.log("ROLE:", role);
+      const { company, name, url, info } = role;
 
-      let newRole = new Role(name, url, JSON.stringify(info));
+      let newRole = new Role(company, name, url, JSON.stringify(info));
       newRole = await newRole.add();
     }
 

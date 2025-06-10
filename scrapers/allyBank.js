@@ -29,6 +29,7 @@ async function allyBankScraping() {
         if (name && pageUrl && info) {
             if (location === "Charlotte, NC") {
                 const filteredRoles = {
+                    company: "Ally Bank",
                     name: name,
                     url: pageUrl,
                     info: {
